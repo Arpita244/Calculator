@@ -10,9 +10,25 @@ const App = () => {
   const [theme, setTheme] = useState('light');
   const [isScientific, setIsScientific] = useState(false);
 
-  // Function to handle button clicks
+  // Function to handle button clicks with sound effect
+  const playClickSound = () => {
+    const audio = new Audio('click-sound.mp3');
+    audio.play();
+  };
+
   const handleClick = (value) => {
+    playClickSound();
     setInput(input + value); // Add the clicked value to the input
+  };
+
+  // Function to handle the sin calculation
+  const handleSin = () => {
+    try {
+      const value = parseFloat(input);
+      setInput(Math.sin(value).toString());
+    } catch (error) {
+      setInput('Error');
+    }
   };
 
   // Clear the input
@@ -154,6 +170,12 @@ const App = () => {
     return () => window.removeEventListener('keydown', handleKeyPress);
   }, [input]);
 
+  // Set the initial theme based on system preference
+  useEffect(() => {
+    const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    setTheme(prefersDarkMode ? 'dark' : 'light');
+  }, []);
+
   return (
     <div className={`calculator ${theme}`}>
       <h1 className="title">Calculator App</h1>
@@ -191,6 +213,7 @@ const App = () => {
             <button onClick={handleLogarithm}>ln</button>
             <button onClick={handleLogBase10}>log</button>
             <button onClick={handleFactorial}>x!</button>
+            <button onClick={handleSin}>sin</button> {/* Add Sin button */}
           </>
         )}
 
@@ -214,7 +237,6 @@ const App = () => {
 };
 
 export default App;
-
 
 
 

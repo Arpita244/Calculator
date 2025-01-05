@@ -20,7 +20,7 @@ button.dark {
 
 /* ------------------------- Global Styles ------------------------- */
 body {
-  font-family: Arial, sans-serif;  /* Set font to Arial */
+  font-family: 'Roboto', sans-serif;  /* Set font to Roboto */
   display: flex;  /* Use flexbox for centering */
   justify-content: center;  /* Center horizontally */
   align-items: center;  /* Center vertically */
@@ -32,8 +32,13 @@ body {
   background: #fff;  /* White background for the calculator */
   padding: 20px;  /* Add space around the content */
   border-radius: 10px;  /* Rounded corners */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);  /* Add a slight shadow for depth */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);  /* Slight shadow for depth */
   width: 300px;  /* Set fixed width for the calculator */
+  transition: background 0.3s ease, color 0.3s ease;  /* Smooth theme transition */
+}
+
+.calculator.dark .display {
+  background-color: #111;  /* Dark background for the display */
 }
 
 /* ------------------------- Display Area ------------------------- */
@@ -41,7 +46,7 @@ body {
   background: #222;  /* Dark background for the display */
   color: #fff;  /* White text for the display */
   font-size: 1.5rem;  /* Set font size for display */
-  text-align: right;  /* Right-align the text in the display */
+  text-align: right;  /* Right-align the text */
   padding: 15px;  /* Add padding inside the display */
   border-radius: 5px;  /* Rounded corners for the display */
   margin-bottom: 20px;  /* Add space below the display */
@@ -52,6 +57,14 @@ body {
   display: grid;  /* Use grid layout for buttons */
   grid-template-columns: repeat(4, 1fr);  /* 4 columns of equal size */
   gap: 10px;  /* Space between buttons */
+}
+
+.buttons .number-group button {
+  background-color: #f0f0f0;  /* Light gray buttons for numbers */
+}
+
+.buttons .operator-group button {
+  background-color: #f9a825;  /* Yellow background for operator buttons */
 }
 
 /* ------------------------- Button Styles ------------------------- */
@@ -65,6 +78,10 @@ button {
   transition: background 0.3s;  /* Smooth background color change */
 }
 
+button:active {
+  transform: scale(0.95);  /* Scale down when button is pressed */
+}
+
 /* Button hover effect */
 button:hover {
   background: #ddd;  /* Darken button color when hovered */
@@ -76,7 +93,6 @@ button.operator {
   color: #fff;  /* White text for operator buttons */
 }
 
-/* Operator button hover effect */
 button.operator:hover {
   background: #f57f17;  /* Darken operator button color on hover */
 }
@@ -88,7 +104,6 @@ button.equal {
   grid-column: span 2;  /* Make the equal button span 2 columns */
 }
 
-/* Equal button hover effect */
 button.equal:hover {
   background: #388e3c;  /* Darken equal button color on hover */
 }
@@ -104,7 +119,6 @@ button.clear {
   color: #fff;  /* White text for the clear button */
 }
 
-/* Clear button hover effect */
 button.clear:hover {
   background: #d32f2f;  /* Darken clear button color on hover */
 }
@@ -115,7 +129,6 @@ button.delete {
   color: #fff;  /* White text for the delete button */
 }
 
-/* Delete button hover effect */
 button.delete:hover {
   background: #f4511e;  /* Darken delete button color on hover */
 }
@@ -126,6 +139,51 @@ button.delete:hover {
   display: flex;  /* Use flexbox to layout the bottom controls */
   justify-content: space-between;  /* Space out the buttons */
   gap: 10px;  /* Add space between the buttons */
+}
+
+/* ------------------------- Theme and Mode Toggle Buttons ------------------------- */
+button.theme-toggle,
+button.scientific-toggle {
+  background-color: #3b3b3b;  /* Dark gray background for theme toggle buttons */
+  color: #fff;  /* White text for the buttons */
+  padding: 10px;  /* Add padding inside the buttons */
+  border-radius: 5px;  /* Rounded corners for the buttons */
+  cursor: pointer;  /* Change cursor to pointer on hover */
+  font-size: 0.9rem;  /* Set smaller font size for these buttons */
+  width: 45%;  /* Make buttons take up equal width */
+}
+
+button.theme-toggle.active {
+  background-color: #00796b;  /* Highlight active theme toggle button */
+}
+
+button.scientific-toggle.active {
+  background-color: #1976d2;  /* Highlight active scientific mode button */
+}
+
+button.theme-toggle:hover,
+button.scientific-toggle:hover {
+  background-color: #555;  /* Darken the buttons on hover */
+}
+
+/* ------------------------- Scientific Mode Buttons ------------------------- */
+button.scientific {
+  background-color: #4caf50;  /* Green background for scientific buttons */
+  color: #fff;  /* White text for scientific buttons */
+}
+
+button.scientific:hover {
+  background-color: #388e3c;  /* Darken scientific buttons on hover */
+}
+
+/* ------------------------- Memory Buttons ------------------------- */
+button.memory {
+  background-color: #1976d2;  /* Blue background for memory buttons */
+  color: #fff;  /* White text for memory buttons */
+}
+
+button.memory:hover {
+  background-color: #1565c0;  /* Darken memory buttons on hover */
 }
 
 /* ------------------------- Theme and Mode Toggle Buttons ------------------------- */

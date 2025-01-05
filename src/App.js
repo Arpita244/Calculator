@@ -10,14 +10,7 @@ const App = () => {
   const [theme, setTheme] = useState('light');
   const [isScientific, setIsScientific] = useState(false);
 
-  // Function to handle button clicks with sound effect
-  const playClickSound = () => {
-    const audio = new Audio('click-sound.mp3');
-    audio.play();
-  };
-
   const handleClick = (value) => {
-    playClickSound();
     setInput(input + value); // Add the clicked value to the input
   };
 
@@ -237,6 +230,3 @@ const App = () => {
 };
 
 export default App;
-
-
-

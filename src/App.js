@@ -1,9 +1,9 @@
-// File: src/App.js
 import React, { useState, useEffect } from 'react';
 import './App.css';
 
 const App = () => {
   const [input, setInput] = useState('');
+  const [memory, setMemory] = useState(null);
 
   const handleClick = (value) => {
     setInput(input + value);
@@ -30,11 +30,48 @@ const App = () => {
     }
   };
 
+  const handleSquareRoot = () => {
+    try {
+      const value = parseFloat(input);
+      if (isNaN(value) || value < 0) {
+        setInput('Error');  // Square root can't be calculated for negative numbers
+      } else {
+        setInput(Math.sqrt(value).toString());
+      }
+    } catch (error) {
+      setInput('Error');
+    }
+  };
+
+  const handlePercentage = () => {
+    setInput((eval(input) / 100).toString());
+  };
+
+  const handleExponentiation = () => {
+    setInput(input + '**');
+  };
+
+  const handleMemorySave = () => {
+    setMemory(eval(input));
+  };
+
+  const handleMemoryRecall = () => {
+    setInput(memory ? memory.toString() : '0');
+  };
+
+  const handleMemoryClear = () => {
+    setMemory(null);
+  };
+
+  const handleNegate = () => {
+    setInput((-eval(input)).toString());
+  };
+
   // Add keyboard support
   useEffect(() => {
     const handleKeyPress = (event) => {
       const key = event.key;
-      if (!isNaN(key) || ['+', '-', '*', '/', '.'].includes(key)) {
+      if (!isNaN(key) || ['+', '-', '*', '/', '.', '(', ')'].includes(key)) {
         handleClick(key);
       } else if (key === 'Enter') {
         handleCalculate();
@@ -75,6 +112,14 @@ const App = () => {
 
         <button onClick={() => handleClick('0')} className="zero">0</button>
         <button onClick={() => handleClick('.')}>.</button>
+        <button onClick={handleSquareRoot}>√</button>
+        <button onClick={handlePercentage}>%</button>
+
+        <button onClick={handleExponentiation}>^</button>
+        <button onClick={handleNegate}>±</button>
+        <button onClick={handleMemorySave}>M</button>
+        <button onClick={handleMemoryRecall}>MR</button>
+        <button onClick={handleMemoryClear}>MC</button>
       </div>
     </div>
   );

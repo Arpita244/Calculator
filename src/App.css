@@ -1,0 +1,89 @@
+/* File: src/App.css */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.calculator {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  width: 300px;
+}
+
+.display {
+  background: #222;
+  color: #fff;
+  font-size: 2rem;
+  text-align: right;
+  padding: 15px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+button {
+  background: #f0f0f0;
+  border: none;
+  border-radius: 5px;
+  padding: 15px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background: #ddd;
+}
+
+button.operator {
+  background: #f9a825;
+  color: #fff;
+}
+
+button.operator:hover {
+  background: #f57f17;
+}
+
+button.equal {
+  background: #4caf50;
+  color: #fff;
+  grid-column: span 2;
+}
+
+button.equal:hover {
+  background: #388e3c;
+}
+
+button.zero {
+  grid-column: span 2;
+}
+
+button.clear {
+  background: #e53935;
+  color: #fff;
+}
+
+button.clear:hover {
+  background: #d32f2f;
+}
+
+button.delete {
+  background: #ff7043;
+  color: #fff;
+}
+
+button.delete:hover {
+  background: #f4511e;
+}

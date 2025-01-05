@@ -137,10 +137,6 @@ const App = () => {
   return (
     <div className={`calculator ${theme}`}>
       <h1 className="title">Calculator App</h1>
-      <button onClick={toggleTheme}>Toggle Theme</button>
-      <button onClick={toggleScientificMode}>
-        {isScientific ? 'Switch to Basic' : 'Switch to Scientific'}
-      </button>
       <div className="display">{input || '0'}</div>
       <div className="buttons">
         <button onClick={handleClear} className="clear">C</button>
@@ -180,10 +176,20 @@ const App = () => {
         <button onClick={handleMemoryRecall}>MR</button>
         <button onClick={handleMemoryClear}>MC</button>
       </div>
+
+      <div className="bottom-controls">
+        <button onClick={toggleTheme} className="theme-toggle">
+          Toggle Theme
+        </button>
+        <button onClick={toggleScientificMode} className="scientific-toggle">
+          {isScientific ? 'Switch to Basic' : 'Switch to Scientific'}
+        </button>
+      </div>
     </div>
   );
 };
 
 export default App;
+
 
 

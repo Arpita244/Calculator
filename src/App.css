@@ -38,7 +38,7 @@ body {
 .display {
   background: #222;
   color: #fff;
-  font-size: 2rem;
+  font-size: 1.5rem; /* Adjust font size */
   text-align: right;
   padding: 15px;
   border-radius: 5px;
@@ -104,4 +104,27 @@ button.delete {
 
 button.delete:hover {
   background: #f4511e;
+}
+
+/* Bottom controls */
+.bottom-controls {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+button.theme-toggle,
+button.scientific-toggle {
+  background-color: #3b3b3b;
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+button.theme-toggle:hover,
+button.scientific-toggle:hover {
+  background-color: #555;
 }

@@ -1,3 +1,4 @@
+// File: src/App.js
 import React, { useState, useEffect } from 'react';
 import './App.css';
 
@@ -19,7 +20,6 @@ const App = () => {
 
   const handleCalculate = () => {
     try {
-      // Prevent division by zero
       if (input.includes('/0')) {
         setInput('Error');
       } else {
@@ -34,7 +34,7 @@ const App = () => {
     try {
       const value = parseFloat(input);
       if (isNaN(value) || value < 0) {
-        setInput('Error');  // Square root can't be calculated for negative numbers
+        setInput('Error');
       } else {
         setInput(Math.sqrt(value).toString());
       }
@@ -67,7 +67,6 @@ const App = () => {
     setInput((-eval(input)).toString());
   };
 
-  // Add keyboard support
   useEffect(() => {
     const handleKeyPress = (event) => {
       const key = event.key;
@@ -88,6 +87,7 @@ const App = () => {
 
   return (
     <div className="calculator">
+      <h1 className="title">Calculator App</h1> {/* Title added here */}
       <div className="display">{input || '0'}</div>
       <div className="buttons">
         <button onClick={handleClear} className="clear">C</button>
@@ -126,3 +126,4 @@ const App = () => {
 };
 
 export default App;
+

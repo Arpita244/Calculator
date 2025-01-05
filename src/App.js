@@ -2,40 +2,49 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 
 const App = () => {
+  // State for holding the input value and memory
   const [input, setInput] = useState('');
   const [memory, setMemory] = useState(null);
-  const [theme, setTheme] = useState('light'); // Theme state
-  const [isScientific, setIsScientific] = useState(false); // Scientific mode toggle
 
+  // State to handle the current theme and scientific mode
+  const [theme, setTheme] = useState('light');
+  const [isScientific, setIsScientific] = useState(false);
+
+  // Function to handle button clicks
   const handleClick = (value) => {
-    setInput(input + value);
+    setInput(input + value); // Add the clicked value to the input
   };
 
+  // Clear the input
   const handleClear = () => {
     setInput('');
   };
 
+  // Delete the last character of the input
   const handleDelete = () => {
     setInput(input.slice(0, -1));
   };
 
+  // Evaluate the expression and handle errors like division by zero
   const handleCalculate = () => {
     try {
+      // Prevent division by zero
       if (input.includes('/0')) {
         setInput('Error');
       } else {
         setInput(eval(input).toString());
       }
     } catch (error) {
-      setInput('Error');
+      setInput('Error'); // Display error if there's a problem with the calculation
     }
   };
 
+  // Handle square root calculation
   const handleSquareRoot = () => {
     try {
       const value = parseFloat(input);
       if (isNaN(value) || value < 0) {
-        setInput('Error');
+        setInput('Error'); // Show error if input is not a valid number
       } else {
         setInput(Math.sqrt(value).toString());
       }
@@ -44,32 +53,35 @@ const App = () => {
     }
   };
 
+  // Handle natural logarithm (ln)
   const handleLogarithm = () => {
     try {
       const value = parseFloat(input);
       if (value <= 0) {
         setInput('Error');
       } else {
-        setInput(Math.log(value).toString()); // Natural log (ln)
+        setInput(Math.log(value).toString());
       }
     } catch (error) {
       setInput('Error');
     }
   };
 
+  // Handle logarithm base 10
   const handleLogBase10 = () => {
     try {
       const value = parseFloat(input);
       if (value <= 0) {
         setInput('Error');
       } else {
-        setInput(Math.log10(value).toString()); // Base 10 log
+        setInput(Math.log10(value).toString());
       }
     } catch (error) {
       setInput('Error');
     }
   };
 
+  // Handle factorial calculation
   const handleFactorial = () => {
     try {
       const value = parseInt(input);
@@ -87,11 +99,13 @@ const App = () => {
     }
   };
 
+  // Save current calculation result to memory
   const handleMemorySave = () => {
     const value = eval(input);
     setMemory(value);
   };
 
+  // Recall the saved value from memory
   const handleMemoryRecall = () => {
     if (memory !== null) {
       setInput(memory.toString());
@@ -100,25 +114,31 @@ const App = () => {
     }
   };
 
+  // Clear the memory
   const handleMemoryClear = () => {
     setMemory(null);
   };
 
+  // Negate the current value (make it negative or positive)
   const handleNegate = () => {
     setInput((-eval(input)).toString());
   };
 
+  // Toggle between light and dark theme
   const toggleTheme = () => {
     setTheme(theme === 'light' ? 'dark' : 'light');
   };
 
+  // Toggle between basic and scientific calculator modes
   const toggleScientificMode = () => {
     setIsScientific(!isScientific);
   };
 
+  // Listen for key press events to handle keyboard input
   useEffect(() => {
     const handleKeyPress = (event) => {
       const key = event.key;
+      // Allow digits and basic operators
       if (!isNaN(key) || ['+', '-', '*', '/', '.', '(', ')'].includes(key)) {
         handleClick(key);
       } else if (key === 'Enter') {
@@ -139,6 +159,7 @@ const App = () => {
       <h1 className="title">Calculator App</h1>
       <div className="display">{input || '0'}</div>
       <div className="buttons">
+        {/* Standard Calculator Buttons */}
         <button onClick={handleClear} className="clear">C</button>
         <button onClick={handleDelete} className="delete">DEL</button>
         <button onClick={() => handleClick('/')} className="operator">/</button>
@@ -164,6 +185,7 @@ const App = () => {
         <button onClick={handleSquareRoot}>√</button>
         <button onClick={handleNegate}>±</button>
 
+        {/* Scientific Mode Buttons */}
         {isScientific && (
           <>
             <button onClick={handleLogarithm}>ln</button>
@@ -172,11 +194,13 @@ const App = () => {
           </>
         )}
 
+        {/* Memory Buttons */}
         <button onClick={handleMemorySave}>M</button>
         <button onClick={handleMemoryRecall}>MR</button>
         <button onClick={handleMemoryClear}>MC</button>
       </div>
 
+      {/* Theme and Mode Toggle Buttons */}
       <div className="bottom-controls">
         <button onClick={toggleTheme} className="theme-toggle">
           Toggle Theme
@@ -190,6 +214,7 @@ const App = () => {
 };
 
 export default App;
+
 
 
 

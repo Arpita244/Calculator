@@ -1,10 +1,11 @@
-// File: src/App.js
 import React, { useState, useEffect } from 'react';
 import './App.css';
 
 const App = () => {
   const [input, setInput] = useState('');
   const [memory, setMemory] = useState(null);
+  const [theme, setTheme] = useState('light'); // Theme state
+  const [isScientific, setIsScientific] = useState(false); // Scientific mode toggle
 
   const handleClick = (value) => {
     setInput(input + value);
@@ -43,12 +44,47 @@ const App = () => {
     }
   };
 
-  const handlePercentage = () => {
-    setInput((eval(input) / 100).toString());
+  const handleLogarithm = () => {
+    try {
+      const value = parseFloat(input);
+      if (value <= 0) {
+        setInput('Error');
+      } else {
+        setInput(Math.log(value).toString()); // Natural log (ln)
+      }
+    } catch (error) {
+      setInput('Error');
+    }
   };
 
-  const handleExponentiation = () => {
-    setInput(input + '**');
+  const handleLogBase10 = () => {
+    try {
+      const value = parseFloat(input);
+      if (value <= 0) {
+        setInput('Error');
+      } else {
+        setInput(Math.log10(value).toString()); // Base 10 log
+      }
+    } catch (error) {
+      setInput('Error');
+    }
+  };
+
+  const handleFactorial = () => {
+    try {
+      const value = parseInt(input);
+      if (value < 0) {
+        setInput('Error');
+      } else {
+        let fact = 1;
+        for (let i = 1; i <= value; i++) {
+          fact *= i;
+        }
+        setInput(fact.toString());
+      }
+    } catch (error) {
+      setInput('Error');
+    }
   };
 
   const handleMemorySave = () => {
@@ -72,6 +108,14 @@ const App = () => {
     setInput((-eval(input)).toString());
   };
 
+  const toggleTheme = () => {
+    setTheme(theme === 'light' ? 'dark' : 'light');
+  };
+
+  const toggleScientificMode = () => {
+    setIsScientific(!isScientific);
+  };
+
   useEffect(() => {
     const handleKeyPress = (event) => {
       const key = event.key;
@@ -91,8 +135,12 @@ const App = () => {
   }, [input]);
 
   return (
-    <div className="calculator">
-      <h1 className="title">Calculator App</h1> {/* Title */}
+    <div className={`calculator ${theme}`}>
+      <h1 className="title">Calculator App</h1>
+      <button onClick={toggleTheme}>Toggle Theme</button>
+      <button onClick={toggleScientificMode}>
+        {isScientific ? 'Switch to Basic' : 'Switch to Scientific'}
+      </button>
       <div className="display">{input || '0'}</div>
       <div className="buttons">
         <button onClick={handleClear} className="clear">C</button>
@@ -118,10 +166,16 @@ const App = () => {
         <button onClick={() => handleClick('0')} className="zero">0</button>
         <button onClick={() => handleClick('.')}>.</button>
         <button onClick={handleSquareRoot}>√</button>
-        <button onClick={handlePercentage}>%</button>
-
-        <button onClick={handleExponentiation}>^</button>
         <button onClick={handleNegate}>±</button>
+
+        {isScientific && (
+          <>
+            <button onClick={handleLogarithm}>ln</button>
+            <button onClick={handleLogBase10}>log</button>
+            <button onClick={handleFactorial}>x!</button>
+          </>
+        )}
+
         <button onClick={handleMemorySave}>M</button>
         <button onClick={handleMemoryRecall}>MR</button>
         <button onClick={handleMemoryClear}>MC</button>

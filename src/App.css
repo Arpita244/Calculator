@@ -1,7 +1,25 @@
-/* File: src/App.css */
+/* Light theme */
+.calculator.light {
+  background-color: #fff;
+  color: #000;
+}
+
+button.light {
+  background-color: #f0f0f0;
+}
+
+/* Dark theme */
+.calculator.dark {
+  background-color: #222;
+  color: #fff;
+}
+
+button.dark {
+  background-color: #444;
+}
+
 body {
   font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,13 +33,6 @@ body {
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   width: 300px;
-}
-
-.title {
-  text-align: center;
-  font-size: 1.8rem;
-  color: #333;
-  margin-bottom: 20px;
 }
 
 .display {

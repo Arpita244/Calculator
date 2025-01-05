@@ -52,11 +52,16 @@ const App = () => {
   };
 
   const handleMemorySave = () => {
-    setMemory(eval(input));
+    const value = eval(input);
+    setMemory(value);
   };
 
   const handleMemoryRecall = () => {
-    setInput(memory ? memory.toString() : '0');
+    if (memory !== null) {
+      setInput(memory.toString());
+    } else {
+      setInput('0');
+    }
   };
 
   const handleMemoryClear = () => {
@@ -87,7 +92,7 @@ const App = () => {
 
   return (
     <div className="calculator">
-      <h1 className="title">Calculator App</h1> {/* Title added here */}
+      <h1 className="title">Calculator App</h1> {/* Title */}
       <div className="display">{input || '0'}</div>
       <div className="buttons">
         <button onClick={handleClear} className="clear">C</button>
@@ -126,4 +131,5 @@ const App = () => {
 };
 
 export default App;
+
 

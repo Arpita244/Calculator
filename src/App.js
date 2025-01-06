@@ -105,6 +105,21 @@ const App = () => {
     window.speechSynthesis.speak(speech);
   };
 
+  const handleStartSpeechRecognition = () => {
+    const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+    recognition.lang = 'en-US';
+    recognition.start();
+
+    recognition.onresult = (event) => {
+      const transcript = event.results[0][0].transcript;
+      setInput(transcript);
+    };
+
+    recognition.onerror = (event) => {
+      console.error('Speech Recognition error', event);
+    };
+  };
+
   useEffect(() => {
     const handleKeyPress = (event) => {
       const key = event.key;
@@ -176,6 +191,9 @@ const App = () => {
         </button>
         <button onClick={handleSpeakResult} className="theme-toggle">
           🔊 Speak Result
+        </button>
+        <button onClick={handleStartSpeechRecognition} className="theme-toggle">
+          🎤 Speak to Text
         </button>
       </div>
     </div>

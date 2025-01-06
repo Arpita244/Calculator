@@ -185,5 +185,47 @@ button.memory {
 button.memory:hover {
   background-color: #1565c0;  /* Darken memory buttons on hover */
 }
+.history {
+  margin-top: 20px;
+  background: #f9f9f9;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
 
+.history h3 {
+  margin: 0 0 10px 0;
+  font-size: 1.2rem;
+}
 
+.history ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+.history li {
+  padding: 5px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.history li:last-child {
+  border-bottom: none;
+}
+
+.clear-history {
+  background: #e53935;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
+.clear-history:hover {
+  background: #d32f2f;
+}
